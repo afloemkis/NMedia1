@@ -7,60 +7,62 @@
     android:padding="@dimen/common_spacing"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/post_avatar_size"
+        android:layout_height="@dimen/post_avatar_size"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:contentDescription="@string/description_post_author_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/topBarrier"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@sample/posts.json/data/authorAvatar" />
+
     <TextView
         android:id="@+id/author"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
-        android:maxLines="1"
+        android:layout_marginEnd="@dimen/common_spacing"
         android:ellipsize="end"
+        android:singleLine="true"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/published"
-        app:layout_constraintEnd_toEndOf="@id/menu"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@id/avatar"
-        tools:text="@sample/posts.json/data/author"
-        />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="@sample/posts.json/data/author" />
 
     <TextView
         android:id="@+id/published"
-        android:maxLines="1"
-        android:ellipsize="end"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginEnd="@dimen/common_spacing"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@id/author"
+        app:layout_constraintBottom_toBottomOf="@id/topBarrier"
+        app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toBottomOf="@+id/author"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageView
-        android:id="@+id/avatar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="@dimen/post_avatar_size"
-        android:layout_height="@dimen/common_spacing"
-        tools:src="@sample/posts.json/data/authorAvatar"
-        android:contentDescription="@string/avatar"
-        />
-
-    <ImageView
+    <ImageButton
         android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/description_post_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_menu"
-        android:layout_width="@dimen/common_ics"
-        android:layout_height="@dimen/common_ics"
-    />
+        app:srcCompat="@drawable/ic_menu" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/topBarrier"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar, published"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="avatar,published,menu"
         />
 
     <TextView
@@ -92,7 +94,7 @@
         android:layout_width="@dimen/common_ics"
         android:layout_height="@dimen/common_ics"
         android:paddingEnd="@dimen/common_spacing"
-        />
+        android:contentDescription="@string/description_post_likes" />
 
     <TextView
         android:id="@+id/likes_number"
@@ -112,7 +114,7 @@
         android:layout_width="@dimen/common_ics"
         android:layout_height="@dimen/common_ics"
         android:paddingEnd="@dimen/common_spacing"
-        />
+        android:contentDescription="@string/description_post_shares" />
 
     <TextView
         android:id="@+id/shares_number"
@@ -132,7 +134,7 @@
         android:layout_width="@dimen/common_ics"
         android:layout_height="@dimen/common_ics"
         android:paddingEnd="@dimen/common_spacing"
-        />
+        android:contentDescription="@string/description_post_views" />
 
     <TextView
         android:id="@+id/views_number"
