@@ -9,6 +9,7 @@
 
     <ImageView
         android:id="@+id/avatar"
+        android:src="@drawable/post_avatar_drawable"
         android:layout_width="@dimen/post_avatar_size"
         android:layout_height="@dimen/post_avatar_size"
         android:layout_marginBottom="@dimen/common_spacing"
