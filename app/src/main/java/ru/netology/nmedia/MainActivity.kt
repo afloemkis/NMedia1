@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity() {
                 viewsNumber?.text = showNumbers(post.views)
             }
 
+            //avatar?.setOnClickListener {
+            //    println("avatar")
+            //}
 
         }
 
