@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.viewmodel.PostViewModel
+import ru.netology.nmedia.adapter.PostsAdapter
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,46 +15,41 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel by viewModels<PostViewModel>()
-        viewModel.data.observe(this) { post ->
-            with(binding) {
-                author.text = post.author
-                published.text = post.published
-                content.text = post.content
-                likes?.setImageResource(if (post.likedByMe) R.drawable.ic_likes_liked else R.drawable.ic_likes)
-                likesNumber?.text = showNumbers(post.likes)
-                sharesNumber?.text = showNumbers(post.shares)
-                viewsNumber?.text = showNumbers(post.views)
-            }
+        val viewModel: PostViewModel by viewModels()
+        val adapter = PostsAdapter ({
+            viewModel.likeById(it.id)
+        },
+            {    viewModel.shareById(it.id)
+        })
+        binding.list.adapter = adapter
+        viewModel.data.observe(this) { posts ->
+            adapter.submitList(posts)
         }
 
-            with(binding) {
-            likes?.setOnClickListener {
-                viewModel.like()
-            }
+//   with(binding) {
+//   likes?.setOnClickListener {
+//       viewModel.like()
+//   }
 
-            share?.setOnClickListener {
-                viewModel.share()
-                sharesNumber?.text = viewModel.data.value?.let { it1 -> showNumbers(it1.shares) }
-            }
+//   share?.setOnClickListener {
+//       viewModel.share()
+//       sharesNumber?.text = viewModel.data.value?.let { it1 -> showNumbers(it1.shares) }
+//  }
 
-            views?.setOnClickListener {
-                viewModel.view()
-                viewsNumber?.text = viewModel.data.value?.let { it1 -> showNumbers(it1.views) }
-            }
-
-        }
-
+//   views?.setOnClickListener {
+//       viewModel.view()
+//       viewsNumber?.text = viewModel.data.value?.let { it1 -> showNumbers(it1.views) }
     }
+}
 
-    private fun showNumbers(x: Int): String {
-        return when (x) {
-            in 0..999 -> x.toString()
-            in 1000 .. 10000 -> (x/1000).toString() + "." + (x % 1000 / 100).toString() + "K"
-            in 10000 .. 999999 -> (x/1000).toString() + "K"
-            else -> (x/1000000).toString() + "." + (x % 1000000 / 100000).toString() + "M"
-        }
 
+private fun showNumbers(x: Int): String {
+    return when (x) {
+        in 0..999 -> x.toString()
+        in 1000..10000 -> (x / 1000).toString() + "." + (x % 1000 / 100).toString() + "K"
+        in 10000..999999 -> (x / 1000).toString() + "K"
+        else -> (x / 1000000).toString() + "." + (x % 1000000 / 100000).toString() + "M"
     }
 
 }
+
