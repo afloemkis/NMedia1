@@ -7,4 +7,10 @@
     <string name="description_post_likes">лайки</string>
     <string name="description_post_shares">поделиться</string>
     <string name="description_post_views">просмотры</string>
+    <string name="description_post_save">сохранить</string>
+    <string name="menu_remove">удалить</string>
+    <string name="post_text">текст поста</string>
+    <string name="menu_edit">изменить</string>
+    <string name="error_empty_content">содержание не может быть пустым</string>
+    <string name="undo_editing">отменить редактирование</string>
 </resources>
