@@ -27,6 +27,7 @@ class PostViewModel : ViewModel() {
     }
 
     fun undoEdit(){
+        edited.value = empty
     }
 
     fun edit(post:Post){

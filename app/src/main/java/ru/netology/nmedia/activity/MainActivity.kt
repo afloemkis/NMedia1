@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
@@ -63,6 +64,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        binding.content.setOnFocusChangeListener { _, b -> //Считывает фокус, второй параметр (Boolean) указывает на то находится ли вьюшка в фокусе
+            binding.editGroup.isVisible = b //Если в фокусе (b = true) значит показать
+        }
+
 
         binding.save.setOnClickListener {
             with(binding.content){
@@ -82,9 +87,9 @@ class MainActivity : AppCompatActivity() {
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
             }
-            with(binding.editGroup){
-                visibility = View.GONE
-            }
+ //           with(binding.editGroup){
+ //               visibility = View.GONE
+ //           }
 
         }
 
@@ -95,9 +100,9 @@ class MainActivity : AppCompatActivity() {
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
             }
-            with(binding.editGroup){
-                visibility = View.GONE
-            }
+ //           with(binding.editGroup){
+ //               visibility = View.GONE
+ //           }
         }
     }
 
