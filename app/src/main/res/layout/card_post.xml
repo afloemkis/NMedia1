@@ -49,7 +49,7 @@
         app:layout_constraintStart_toEndOf="@id/avatar"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +58,9 @@
         android:contentDescription="@string/description_post_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_menu" />
+        app:icon="@drawable/ic_menu"
+        style="@style/Widget.AppTheme.ActionButtons"
+        />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/topBarrier"
@@ -120,7 +122,7 @@
         android:id="@+id/views"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/contentBarrier"
-        app:srcCompat="@drawable/ic_eye"
+        app:icon="@drawable/ic_eye"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text = "0"

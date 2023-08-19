@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.edited.observe(this) {post ->
             if (post.id == 0L){
                 return@observe
-                println("сработала проверка на 0й пост id")
             }
             with(binding.content){
                 requestFocus()
