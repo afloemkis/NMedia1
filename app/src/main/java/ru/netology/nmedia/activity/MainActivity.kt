@@ -1,7 +1,6 @@
 package ru.netology.nmedia.activity
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -51,11 +50,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.edited.observe(this) {post ->
-            with(binding.editGroup){
-                visibility = View.VISIBLE
-            }
             if (post.id == 0L){
                 return@observe
+                println("сработала проверка на 0й пост id")
             }
             with(binding.content){
                 requestFocus()
