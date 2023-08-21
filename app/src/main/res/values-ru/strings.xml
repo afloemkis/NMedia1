@@ -12,5 +12,7 @@
     <string name="post_text">текст поста</string>
     <string name="menu_edit">изменить</string>
     <string name="error_empty_content">содержание не может быть пустым</string>
-    <string name="undo_editing">отменить редактирование</string>
+    <string name="chooser_share_post">поделиться</string>
+    <string name="add_post">создать пост</string>
+    <string name="cancel">отменить</string>
 </resources>
