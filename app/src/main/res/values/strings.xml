@@ -14,4 +14,6 @@
     <string name="chooser_share_post">Share post</string>
     <string name="add_post">add post</string>
     <string name="cancel">cancel</string>
+    <string name="play_button">Play Button</string>
+    <string name="video_thumbnail">Video Thumbnail</string>
 </resources>

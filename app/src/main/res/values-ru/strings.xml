@@ -15,4 +15,6 @@
     <string name="chooser_share_post">поделиться</string>
     <string name="add_post">создать пост</string>
     <string name="cancel">отменить</string>
+    <string name="play_button">Play Button</string>
+    <string name="video_thumbnail">Video Thumbnail</string>
 </resources>

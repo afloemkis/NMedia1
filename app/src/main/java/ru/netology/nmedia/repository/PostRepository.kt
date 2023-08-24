@@ -10,4 +10,6 @@ interface PostRepository {
     fun save(post:Post)
     fun undoEdit()
     fun removeById(id:Long)
+
+    fun playVideo(post: Post)
 }

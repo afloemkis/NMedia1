@@ -124,4 +124,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             if (it.id != id) it else it.copy(views = it.views + 1)}
         data.value = posts
     }
+
+    override fun playVideo(post: Post) {
+
+    }
+
 }

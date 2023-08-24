@@ -45,4 +45,6 @@ class PostViewModel : ViewModel() {
     fun viewById(id:Long) = repository.viewById(id)
 
     fun removeById(id:Long) = repository.removeById(id)
+
+    fun playVideo(post:Post) = repository.playVideo(post)
 }

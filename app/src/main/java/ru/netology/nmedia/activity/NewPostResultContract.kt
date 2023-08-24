@@ -10,7 +10,7 @@ class NewPostResultContract() : ActivityResultContract<Post?, String?>() {
 
     override fun createIntent(context: Context, input: Post?): Intent =
         Intent(context, NewPostActivity::class.java).apply {
-            putExtra("test", this)
+            putExtra("test", input?.content?:"")
         }
 
     override fun parseResult(resultCode: Int, intent: Intent?): String? =
