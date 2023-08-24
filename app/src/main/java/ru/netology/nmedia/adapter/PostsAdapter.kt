@@ -51,9 +51,9 @@ class PostViewHolder(
             views.text = showNumbers(post.views)
             likes.isChecked = post.likedByMe
             if (!post.video.isNullOrEmpty()) {
-                videoThumbnail.visibility = View.VISIBLE
+                videoGroup.visibility = View.VISIBLE
             } else {
-                videoThumbnail.visibility = View.GONE
+                videoGroup.visibility = View.GONE
             }
 
             menu.setOnClickListener{
@@ -86,7 +86,11 @@ class PostViewHolder(
                 onInteractionListener.onView(post)
             }
 
-            videoGroup.setOnClickListener{
+            videoThumbnail.setOnClickListener{
+                onInteractionListener.onVideo(post)
+            }
+
+            play.setOnClickListener{
                 onInteractionListener.onVideo(post)
             }
 

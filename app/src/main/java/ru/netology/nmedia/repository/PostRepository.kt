@@ -11,5 +11,4 @@ interface PostRepository {
     fun undoEdit()
     fun removeById(id:Long)
 
-    fun playVideo(post: Post)
 }

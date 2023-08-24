@@ -22,9 +22,10 @@ class MainActivity : AppCompatActivity() {
         val viewModel: PostViewModel by viewModels()
 
         val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.changeContent(result)
-            viewModel.save()
+            result?.let {
+                viewModel.changeContent(result)
+                viewModel.save()
+            } ?: viewModel.undoEdit()
         }
 
         val adapter = PostsAdapter(object : OnInteractionListener {
@@ -60,7 +61,6 @@ class MainActivity : AppCompatActivity() {
                     val videoUri = Uri.parse(post.video)
                     val intent = Intent(Intent.ACTION_VIEW, videoUri)
                     startActivity(intent)
-                    viewModel.playVideo(post)
                 }
             }
 
@@ -73,8 +73,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
         }
-
-
 
         binding.fab.setOnClickListener {
             newPostLauncher.launch(null)
