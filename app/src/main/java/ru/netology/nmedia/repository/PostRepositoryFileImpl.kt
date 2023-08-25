@@ -19,11 +19,12 @@ class PostRepositoryFileImpl(
 
     init {
         val file = context.filesDir.resolve(filename)
-        if (file.exists()) {
+        if (file.exists() ) {
             // если файл есть - читаем
             context.openFileInput(filename).bufferedReader().use {
                 posts = gson.fromJson(it, type)
                 data.value = posts
+                nextId = posts.last().id + 2
             }
         } else {
             // если нет, записываем пустой массив
@@ -90,8 +91,11 @@ class PostRepositoryFileImpl(
     }
 
     private fun sync() {
+        if (posts.isNotEmpty())
         context.openFileOutput(filename, Context.MODE_PRIVATE).bufferedWriter().use {
             it.write(gson.toJson(posts))
+        } else {
+            context.deleteFile(filename)
         }
     }
 }
