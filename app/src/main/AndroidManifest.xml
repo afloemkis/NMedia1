@@ -12,9 +12,6 @@
         android:theme="@style/Theme.NMedia"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.NewPostResultContract"
-            android:exported="false" />
-        <activity
             android:name=".activity.NewPostActivity"
             android:exported="false" />
         <activity

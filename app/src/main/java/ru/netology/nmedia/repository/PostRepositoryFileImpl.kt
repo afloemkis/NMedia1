@@ -1,12 +1,15 @@
 package ru.netology.nmedia.repository
 
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.netology.nmedia.dto.Post
 
+@RequiresApi(Build.VERSION_CODES.N)
 class PostRepositoryFileImpl(
     private val context: Context,
 ) : PostRepository {
@@ -24,7 +27,7 @@ class PostRepositoryFileImpl(
             context.openFileInput(filename).bufferedReader().use {
                 posts = gson.fromJson(it, type)
                 data.value = posts
-                nextId = posts.last().id + 2
+                nextId = posts.maxWith(Comparator.comparingLong{it.id}).id + 1
             }
         } else {
             // если нет, записываем пустой массив
