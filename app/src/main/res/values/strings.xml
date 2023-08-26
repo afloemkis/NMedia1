@@ -11,5 +11,9 @@
     <string name="post_text">post text</string>
     <string name="menu_edit">edit</string>
     <string name="error_empty_content">content can\'t be empty</string>
-    <string name="undo_editing">undo editing</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="add_post">add post</string>
+    <string name="cancel">cancel</string>
+    <string name="play_button">Play Button</string>
+    <string name="video_thumbnail">Video Thumbnail</string>
 </resources>

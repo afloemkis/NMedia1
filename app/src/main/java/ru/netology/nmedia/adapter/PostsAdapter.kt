@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -16,6 +17,8 @@ interface OnInteractionListener {
     fun onView(post: Post){}
     fun onEdit(post: Post) {}
     fun onRemove(post: Post){}
+
+    fun onVideo(post:Post){}
 }
 
 class PostsAdapter(
@@ -43,14 +46,15 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            likesNumber.text = showNumbers(post.likes)
-            sharesNumber.text = showNumbers(post.shares)
-            viewsNumber.text = showNumbers(post.views)
-
- //           (post.likes as String).also { likesNumber.text = it }
-            likes.setImageResource (
-                if (post.likedByMe) R.drawable.ic_likes_liked else R.drawable.ic_likes
-            )
+            likes.text = showNumbers(post.likes)
+            share.text = showNumbers(post.shares)
+            views.text = showNumbers(post.views)
+            likes.isChecked = post.likedByMe
+            if (!post.video.isNullOrEmpty()) {
+                videoGroup.visibility = View.VISIBLE
+            } else {
+                videoGroup.visibility = View.GONE
+            }
 
             menu.setOnClickListener{
                 PopupMenu(it.context, it).apply {
@@ -63,6 +67,7 @@ class PostViewHolder(
                             }
                             R.id.edit -> {
                                 onInteractionListener.onEdit(post)
+
                                 true
                             }
                             else -> false
@@ -79,6 +84,14 @@ class PostViewHolder(
             }
             views.setOnClickListener{
                 onInteractionListener.onView(post)
+            }
+
+            videoThumbnail.setOnClickListener{
+                onInteractionListener.onVideo(post)
+            }
+
+            play.setOnClickListener{
+                onInteractionListener.onVideo(post)
             }
 
         }
