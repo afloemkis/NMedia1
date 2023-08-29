@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "ru.netology.nmedia"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "ru.netology.nmedia"
-        minSdk = 23
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -46,6 +46,9 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation("androidx.recyclerview:recyclerview:1.3.1")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.1")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

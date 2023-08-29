@@ -9,7 +9,7 @@ import ru.netology.nmedia.dto.Post
 class NewPostResultContract() : ActivityResultContract<Post?, String?>() {
 
     override fun createIntent(context: Context, input: Post?): Intent =
-        Intent(context, NewPostActivity::class.java).apply {
+        Intent(context, NewPostFragment::class.java).apply {
             putExtra("test", input?.content?:"")
         }
 
