@@ -26,7 +26,7 @@ class NewPostFragment : Fragment() {
             binding.edit.setText(it)
         }
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
-        activity?.setContentView(binding.root)
+
         val postText = activity?.intent?.getStringExtra("test")
         binding.edit.setText(postText)
         binding.edit.requestFocus()

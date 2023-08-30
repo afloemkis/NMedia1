@@ -30,6 +30,8 @@ class AppActivity : AppCompatActivity() {
                     .show()
                 return@let
             }
+            intent.removeExtra(Intent.EXTRA_TEXT)
+
             findNavController(R.id.nav_graph).navigate(
                 R.id.action_feedFragments_to_newPostFragment,
                 Bundle().apply {

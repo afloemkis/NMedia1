@@ -12,24 +12,24 @@ import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
 import ru.netology.nmedia.adapter.OnInteractionListener
-import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.databinding.FragmentFeedBinding
+import ru.netology.nmedia.adapter.PostViewHolder
+import ru.netology.nmedia.databinding.FragmentSinglePostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
-class FeedFragments : Fragment() {
+class SinglePostFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentFeedBinding.inflate(layoutInflater, container, false)
-
+    ): View {
+        val binding = FragmentSinglePostBinding.inflate(layoutInflater, container, false)
+        val text = List(100) {it}.joinToString (separator = "\n")
+        binding.singlePost.content.text = text
         val viewModel: PostViewModel by viewModels(ownerProducer =  ::requireParentFragment)
-
-        val adapter = PostsAdapter(object : OnInteractionListener {
+        val holder = PostViewHolder(binding.singlePost, object: OnInteractionListener{
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
                 findNavController().navigate(
@@ -77,27 +77,13 @@ class FeedFragments : Fragment() {
             override fun onSinglePost(post: Post) {
                 findNavController().navigate(R.id.action_feedFragments_to_singlePostFragment)
                 Bundle().apply {
-                post
-                //textArg = post.content
+                    textArg  = post.content
                 }
             }
         })
-
-        binding.list.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner) { posts ->
-            adapter.submitList(posts)
-        }
-
-        binding.fab.setOnClickListener {
-            findNavController().navigate(R.id.action_feedFragments_to_newPostFragment)
-
-        }
-        return binding.feedFragments
+        holder.bind(Post(0,"Author", text, "30.08", 11,false))
+        return binding.root
     }
 
+
 }
-
-
-
-
-
