@@ -1,14 +1,15 @@
 package ru.netology.nmedia.activity
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.FragmentNewPostBinding
 import ru.netology.nmedia.util.StringProperty
 import ru.netology.nmedia.viewmodel.PostViewModel
@@ -27,11 +28,8 @@ class NewPostFragment : Fragment() {
         }
         val viewModel: PostViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
-        val postText = activity?.intent?.getStringExtra("test")
-        binding.edit.setText(postText)
         binding.edit.requestFocus()
         binding.ok.setOnClickListener {
-            val intent = Intent()
             val content = binding.edit.text.toString()
             if (content.isNotBlank()) {
                 viewModel.changeContent(content)
@@ -43,10 +41,26 @@ class NewPostFragment : Fragment() {
 
 
         binding.cancelButton.setOnClickListener {
-            val intent = Intent()
-            activity?.setResult(Activity.RESULT_CANCELED, intent)
-            activity?.finish()
+            viewModel.undoEdit()
+            findNavController().navigateUp()
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    AlertDialog.Builder(requireActivity()).apply {
+                        setTitle(getString(R.string.headlineNewPostSystemBack))
+                        setMessage(getString(R.string.messageNewPostSystemBack))
+                        setPositiveButton(getString(R.string.yesButton)) { _, _ ->
+                            viewModel.undoEdit()
+                            findNavController().navigateUp()
+                        }
+                        setNegativeButton(getString(R.string.NoButton)) { _, _ -> }
+                        setCancelable(true)
+                    }.create().show()
+                }
+            }
+        )
 
         return binding.newPostFragment
     }

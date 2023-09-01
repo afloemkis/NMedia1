@@ -15,6 +15,7 @@ import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostViewHolder
 import ru.netology.nmedia.databinding.FragmentSinglePostBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.util.LongProperty
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
@@ -26,14 +27,15 @@ class SinglePostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentSinglePostBinding.inflate(layoutInflater, container, false)
-        val text = List(100) {it}.joinToString (separator = "\n")
-        binding.singlePost.content.text = text
+        val postId = arguments?.getLong("postId", 0) ?: 0
+
         val viewModel: PostViewModel by viewModels(ownerProducer =  ::requireParentFragment)
+
         val holder = PostViewHolder(binding.singlePost, object: OnInteractionListener{
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
                 findNavController().navigate(
-                    R.id.action_feedFragments_to_newPostFragment,
+                    R.id.action_singlePostFragment_to_newPostFragment,
                     Bundle().apply {
                         textArg = post.content
                     }
@@ -74,15 +76,18 @@ class SinglePostFragment : Fragment() {
                 viewModel.viewById(post.id)
             }
 
-            override fun onSinglePost(post: Post) {
-                findNavController().navigate(R.id.action_feedFragments_to_singlePostFragment)
-                Bundle().apply {
-                    textArg  = post.content
-                }
-            }
         })
-        holder.bind(Post(0,"Author", text, "30.08", 11,false))
+
+        viewModel.data.observe(viewLifecycleOwner){list ->
+            list.find { it.id == postId }?.let {
+                holder.bind(it)}
+        }
+
         return binding.root
+    }
+
+    companion object {
+        var Bundle.postId by LongProperty
     }
 
 

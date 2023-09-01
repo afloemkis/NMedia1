@@ -75,11 +75,20 @@ class FeedFragments : Fragment() {
             }
 
             override fun onSinglePost(post: Post) {
-                findNavController().navigate(R.id.action_feedFragments_to_singlePostFragment)
-                Bundle().apply {
-                post
-                //textArg = post.content
+                val bundle = Bundle().apply {
+                    putLong("postId", post.id) // Устанавливаем postId в Bundle
+                    putString("textArg", post.content) // Устанавливаем textArg в Bundle
                 }
+
+                findNavController().navigate(
+                    R.id.action_feedFragments_to_singlePostFragment,
+                    bundle // Передаем Bundle вместе с навигацией
+                )
+
+            //                findNavController().navigate(R.id.action_feedFragments_to_singlePostFragment)
+//                Bundle().apply {
+//                    postId = post.id
+//                }
             }
         })
 
