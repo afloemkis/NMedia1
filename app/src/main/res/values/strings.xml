@@ -16,4 +16,8 @@
     <string name="cancel">cancel</string>
     <string name="play_button">Play Button</string>
     <string name="video_thumbnail">Video Thumbnail</string>
+    <string name="headlineNewPostSystemBack">Back to posts feed</string>
+    <string name="messageNewPostSystemBack">Are you sure? Changes will not be applied</string>
+    <string name="yesButton">Yes</string>
+    <string name="NoButton">No</string>
 </resources>

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="video_thumbnail">Video Thumbnail</string>
+    <string name="headlineNewPostSystemBack">Вернуться в ленту постов</string>
+    <string name="messageNewPostSystemBack">Вы точно хотите вернуться? Изменения не будут сохранены</string>
+    <string name="yesButton">Да</string>
+    <string name="NoButton">Нет</string>
 </resources>

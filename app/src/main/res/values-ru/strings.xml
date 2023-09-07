@@ -17,4 +17,8 @@
     <string name="cancel">отменить</string>
     <string name="play_button">Play Button</string>
     <string name="video_thumbnail">Video Thumbnail</string>
+    <string name="headlineNewPostSystemBack">Вернуться в ленту постов</string>
+    <string name="messageNewPostSystemBack">Вы точно хотите вернуться? Изменения не будут сохранены</string>
+    <string name="yesButton">Да</string>
+    <string name="NoButton">Нет</string>
 </resources>
