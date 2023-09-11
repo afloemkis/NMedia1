@@ -8,7 +8,6 @@ interface PostRepository {
     fun shareById(id: Long)
     fun viewById(id: Long)
     fun save(post:Post)
-    fun undoEdit()
     fun removeById(id:Long)
 
 }
