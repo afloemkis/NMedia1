@@ -6,21 +6,11 @@ import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.entity.PostEntity
 
 class PostRepositoryImpl(
-    private val dao: PostDao
+    private val dao: PostDao,
 ) : PostRepository {
-
-    override fun getAll() = dao.getAll().map{ list ->
+    override fun getAll() = dao.getAll().map { list ->
         list.map {
-            Post(
-                it.id,
-                it.author,
-                it.content,
-                it.published,
-                it.likedByMe,
-                it.likes,
-                it.shares,
-                it.views,
-                it.videoLink)
+            it.toDto()
         }
     }
 
